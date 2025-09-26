@@ -1,23 +1,38 @@
+
+#                 >>> NUMBER GUESSING PROGRAM <<<
 import random
 
-''' give output as number b/w the reange'''
+lowest_num = 1
+highest_num = 100
+answer = random.randint(lowest_num, highest_num)
+guesses = 0
+is_running = True
 
-# num = random.randint(1, 20)
-# print(num)
+print("Welcome To Python Number Guessing Game")
+print(f"Select a number between {lowest_num} and {highest_num}")
 
-low = 1
-high = 10
-options = ('rock', 'paper', 'scissor')
-cards = ['1','2','3', '4','5','6','7','8','9','10','K','Q','J','A']
-# num = random.randint(low, high)
+while is_running:
 
-# num = random.random()
-'''give output as point values like 0.4005620431514263'''
-# print(num)
+    guess = input("Enter your guess:")
 
+    if guess.isdigit():
+        guess = int(guess)
+        guesses = guesses + 1
 
-# option = random.choice(options)
-# print(option)
+        if guess <= lowest_num and guess >= highest_num:
+            print("that number is out of range..")
+            print(f"Select a number between {lowest_num} and {highest_num}")
 
-random.shuffle(cards)
-print(cards)
+        elif guess < answer:
+            print("Too low! Try again")
+        elif guess > answer:
+            print("Too high! Try again")
+        else:
+            print("-------------------------------")
+            print(f"CORRECT! The answer is {answer}")
+            print(f"Number of guesses: {guesses}")
+            print("-------------------------------")
+            is_running = False
+    else:
+        print("Invalid guess...")
+        print(f"Select a number between {lowest_num} and {highest_num}")
